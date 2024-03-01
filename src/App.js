@@ -2,10 +2,13 @@ import { useState } from "react";
 import { Dialog } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { FaXTwitter, FaInstagram, FaTelegram } from "react-icons/fa6";
+import { MdSimCardDownload } from "react-icons/md";
 import "./App.css";
 const navigation = [
   { name: "ماتریکس", href: "/" },
   { name: "ویژگی ها", href: "#features" },
+  { name: "پلتفرم‌ها", href: "#platform" },
+  { name: "دانلود", href: "#download" },
   { name: "فیلم و سریال", href: "#image" },
   { name: "شبکه ها", href: "#network" },
 ];
@@ -14,6 +17,65 @@ const stats = [
   { label: "فیلم و سریال رایگان برای دانلود و تماشا", value: "۳۰،۰۰۰ +" },
   { label: "پروفایل بازیگران", value: "۲۰۰،۰۰۰ +" },
   { label: "فصل و قسمت سریال", value: "۱۰۰،۰۰۰ +" },
+];
+
+const downloads = [
+  {
+    name: "ماتریکس برای اندروید",
+    title: "موبایل و تبلت",
+    version: "1.0",
+    button: "دانلود ماتریکس برای اندروید",
+    link: "https://matrix.film",
+  },
+  {
+    name: "ماتریکس برای iOS",
+    title: "آیفون و آی‌پد",
+    version: "1.0",
+    button: "دانلود ماتریکس برای آیفون",
+    link: "https://matrix.film",
+  },
+  {
+    name: "ماتریکس برای اندروید تی‌وی",
+    title: "تی‌وی و باکس",
+    version: "1.0",
+    button: "دانلود ماتریکس برای تی‌ وی",
+    link: "https://matrix.film",
+  },
+  {
+    name: "ماتریکس برای ویندوز",
+    title: "کامپوتر(لپ‌تاپ) و تبلت",
+    version: "1.0",
+    button: "دانلود ماتریکس برای ویندوز",
+    link: "https://matrix.film",
+  },
+  {
+    name: "ماتریکس برای مک",
+    title: "مک‌بوک و کامپیوترهای اپل",
+    version: "1.0",
+    button: "دانلود ماتریکس برای مک",
+    link: "https://matrix.film",
+  },
+  {
+    name: "ماتریکس برای لینوکس",
+    title: "AppImage",
+    version: "1.0",
+    button: "دانلود ماتریکس برای لینوکس",
+    link: "https://matrix.film",
+  },
+  {
+    name: "ماتریکس برای webOS",
+    title: "تلویزیون ها LG",
+    version: "1.0",
+    button: "دانلود ماتریکس برای وب‌او‌اس",
+    link: "https://matrix.film",
+  },
+  {
+    name: "ماتریکس برای TizenOS",
+    title: "تلویزیون های سامسونگ",
+    version: "1.0",
+    button: "دانلود ماتریکس برای تایزن",
+    link: "https://matrix.film",
+  },
 ];
 
 const footerNavigation = {
@@ -268,8 +330,55 @@ export default function App() {
           <img
             src="/platforms.jpg"
             alt=""
-            className=" w-full object-cover xl:rounded-3xl border border-neutral-200"
+            className=" w-full object-cover xl:rounded-t-3xl border border-[#e2e2e2]"
           />
+        </div>
+        <div
+          className="xl:mx-auto xl:max-w-7xl xl:px-8 space-y-5 "
+          id="download"
+        >
+          <ul className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4 bg-[#e2e2e2] xl:px-8 py-10 xl:rounded-b-3xl">
+            {downloads.map((dl, index) => (
+              <li
+                key={index}
+                className="col-span-1 divide-y divide-gray-200 rounded-lg bg-white shadow"
+              >
+                <div className="flex w-full items-center justify-between space-x-6 p-6">
+                  <div className="flex-1 truncate">
+                    <div className="flex items-center space-x-3 space-x-reverse">
+                      <h3 className="truncate text-sm font-medium text-gray-900">
+                        {dl.name}
+                      </h3>
+                      <span className="inline-flex flex-shrink-0 items-center rounded-full bg-green-50 px-1.5 py-0.5 text-xs  text-green-700 ring-1 ring-inset ring-green-600/20 font-extralight">
+                        {dl.version}
+                      </span>
+                    </div>
+                    <p className="mt-1 truncate text-sm text-gray-500">
+                      {dl.title}
+                    </p>
+                  </div>
+                </div>
+                <div>
+                  <div className="-mt-px flex divide-x divide-gray-200">
+                    <div className="flex w-0 flex-1">
+                      <a
+                        title={`ماتریکس ${dl.name}`}
+                        href={dl.link}
+                        download={true}
+                        className="relative -mr-px inline-flex w-0 flex-1 items-center justify-center gap-x-3 rounded-b-lg border border-transparent py-4 text-sm font-semibold text-gray-100 bg-neutral-800 hover:bg-neutral-700"
+                      >
+                        <MdSimCardDownload
+                          className="h-5 w-5 text-[#dd1e24]"
+                          aria-hidden="true"
+                        />
+                        {dl.button}
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </li>
+            ))}
+          </ul>
         </div>
 
         <div className="mx-auto max-w-7xl px-6  lg:px-8 mt-20" id="features">
@@ -382,7 +491,8 @@ export default function App() {
           </div>
           <div className="mx-auto max-w-7xl px-6 lg:px-8">
             <h2 className="text-center text-lg font-semibold leading-8 text-gray-900">
-              بیش از ۱۰۰ هزار قسمت فیلم و سریال از همه شبکه ها
+              بیش از ۱۰۰ هزار قسمت فیلم و سریال از همه شبکه ها و کمپانی های
+              تولید کننده
             </h2>
             <img
               className="col-span-2  w-full object-contain lg:col-span-1 rounded-3xl mt-10"
